@@ -1,0 +1,41 @@
+/* Reset Start */
+html,body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,
+dl,dt,dd,form,fieldset,caption,table,tr,td,th,
+address,blockquote,img {
+  margin: 0;
+  padding: 0;
+}
+
+img,fieldset,object {
+  border: none;
+}
+
+*, *:after, *:before {
+  flex: 1 0 auto; /* safari bugfix */
+  box-sizing: border-box;
+}
+
+/*  Given that clicking on a label focuses the input, and button typically 
+peform actions akin to an anchor, the lack of changing the cursor to tell 
+the user it’s interactable is utter shite. So we fix it. */
+button, label {
+  cursor: pointer;
+}
+
+/* Finally the height declaration. In HTML if you declare a percentage height 
+on an element where the parent element doesn’t have a height, it’s ignored. 
+Thankfully % height on HTML is basically the same as vh, and setting it on 
+BODY behaves more as a min-height but allows sub-elements — like our fauxBody 
+— to set their own percentage heights. */
+html, body {
+  height: 100%;
+}
+
+hr {
+  display:none;
+}
+
+body, button, input, table, textarea, select {
+  font:normal 1em/1.5 "poppins",arial,helvetica,sans-serif;
+}
+/* Reset End */
