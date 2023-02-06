@@ -1,0 +1,278 @@
+body {
+  /* base colors */
+  --hue-primary: 224;
+  --sat-primary: 0%;
+  --hue-secondary: 200;
+  --sat-secondary: 0%;
+  --hue-featured: 180;
+  --sat-featured: 0%;
+  --luma-flowText: 20%;
+  --luma-headings: 5%;
+  --luma-featured: 10%;
+  --luma-nav: 25%;
+  --luma-header-bg: 80%;
+  --luma-main-bg: 100%;
+  --luma-article-bg: 90%;
+  --luma-fader: 70%;
+  --color-main-bg: hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-main-bg)
+  );
+  --color-flowText: hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-flowText)
+  );
+  --color-featured: hsl(
+    var(--hue-featured),
+    var(--sat-featured),
+    var(--luma-featured)
+  );
+  --color-chrome-bg: hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-header-bg)
+  );
+  --color-heading-text: hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-headings)
+  );
+  --color-modal-fader: hsla(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-fader),
+    0.8
+  );
+  --color-modal-bg: hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-main-bg)
+  );
+  --color-nav-anchor: hsl(
+    var(--hue-featured),
+    var(--sat-primary),
+    var(--luma-nav)
+  );
+  --color-article-bg: hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-article-bg)
+  );
+  --color-shadow: #0003;
+  --shadow-chrome: 0 0.25em 1em 0.25em var(--color-shadow);
+  --shadow-button: 0 0.25em 0.25em 0.125em var(--color-shadow);
+  --shadow-formElement-focus: 0 0 0.25em 0.125em #038;
+
+  --border-hairline: 1px solid #0004;
+
+  /* base measurements */
+  --maxWidth-constrain: 64rem;
+  --maxWidth-flow: 40rem;
+  --maxWidth-modal: 32rem;
+  --maxWidth-modalForm: 24rem;
+  --pad: clamp(0.5em, min(2vw, 4vh), 4em);
+  --borderRadius-outer: 0.5em;
+  --borderRadius-inner: 0.25em;
+}
+
+/* Reset Start */
+/* prettier-ignore */
+html,body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,
+dl,dt,dd,form,fieldset,caption,table,tr,td,th,
+address,blockquote,img {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+fieldset,
+object {
+  border: none;
+}
+
+*,
+*:after,
+*:before {
+  flex: 1 0 auto; /* safari bugfix */
+  box-sizing: border-box;
+}
+
+/*  Given that clicking on a label focuses the input, and button typically 
+peform actions akin to an anchor, the lack of changing the cursor to tell 
+the user it’s interactable is utter shite. So we fix it. */
+button,
+label {
+  cursor: pointer;
+}
+
+/* Finally the height declaration. In HTML if you declare a percentage height 
+on an element where the parent element doesn’t have a height, it’s ignored. 
+Thankfully % height on HTML is basically the same as vh, and setting it on 
+BODY behaves more as a min-height but allows sub-elements — like our fauxBody 
+— to set their own percentage heights. */
+html,
+body {
+  height: 100%;
+}
+
+hr {
+  display: none;
+}
+
+/* prettier-ignore */
+body, button, input, table, textarea, select {
+  font:normal 1em/1.5 "poppins",arial,helvetica,sans-serif;
+}
+/* Reset End */
+
+/* unify the focus style */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: var(--shadow-formElement-focus);
+}
+
+/* setting this up to be our primary scrollbar element, allowing modal dialogs 
+to overlap it, avoiding having two scrollbars at once on smaller screens */
+#fauxBody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  background: var(--color-main-bg);
+  color: var(--color-flowText);
+}
+
+/* Hide the modals off-screen.. */
+.modal {
+  position: fixed;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  padding: 0.5em;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-modal-fader);
+  opacity: 0;
+  transition: left 0s 0.5s, opacity 0.5s;
+}
+/* ..and showing them when they are :target */
+.modal:target {
+  left: 0;
+  opacity: 1;
+  transition: left 0s, opacity 0.5s;
+}
+
+/* The closing anchors */
+.modalClose {
+  /* undo their hidden states */
+  display: block;
+  position: absolute;
+  text-decoration: none;
+}
+.modal > .modalClose {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal > div .modalClose {
+  top: 1em;
+  right: 1em;
+  width: 1.5em;
+  height: 1.5em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512'%3E%3Cpath fill='%23800' d='M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z'%3E%3C/path%3E%3C/svg%3E")
+    center center no-repeat;
+  background-size: cover;
+}
+
+.modal > div {
+  flex-grow: 0;
+  position: relative;
+  top: -50%;
+  width: 100%;
+  /* If you omit auto margin on the VERTICAL (a direction that normally ignores margin!) 
+  flex will chop off the top of your content and you won’t be able to scroll up to it. 
+  Grid often drops the ball on this worse which is why I favor flex here. 
+  If you’re going to use a container to center its children, I really suggest using flex 
+  with margin on an inner container. Failing to do so can really screw you over. */
+  margin: auto;
+  max-width: var(--maxWidth-modal);
+  overflow: hidden;
+  /* A top relative positioning animation makes it look like it slides in here. 
+  You could do almost any animation here from rotation, to scale, to other directions. 
+  Though beware trying to scroll in from bottom or right can trigger unwanted scrollbars! */
+  transition: top 0.5s;
+  background: var(--color-modal-bg);
+  box-shadow: var(--shadow-chrome);
+  border: var(--border-hairline);
+  border-radius: var(--borderRadius-outer);
+}
+form.modal > div {
+  max-width: var(--maxWidth-modalForm);
+}
+.modal:target > div {
+  top: 0;
+}
+.modal h2 {
+  font-size: 1.5em;
+  padding: 0.5rem 1rem;
+  background: var(--color-chrome-bg);
+  border-bottom: 1px solid var(--color-shadow);
+}
+.modal > div > fieldset {
+  padding: var(--pad);
+}
+.modal > div > footer {
+  padding: 0 var(--pad) var(--pad);
+}
+.modal input:not([type='checkbox']):not([type='radio']),
+.modal textarea {
+  width: 100%;
+  padding: 0.25em 0.5em;
+  margin: 0.25em 0 0.5em;
+  border: var(--border-hairline);
+  border-radius: var(--borderRadius-inner);
+}
+.modal label {
+  display: block;
+  text-indent: 0.5em;
+}
+.modal footer button,
+.actions a,
+.priceCards a {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: var(--color-chrome-bg);
+  border: var(--border-hairline);
+  border-radius: var(--borderRadius-inner);
+  box-shadow: var(--shadow-button);
+  color: var(--color-flowText);
+  transition: transform 0.5s;
+}
+.modal footer button:focus,
+.modal footer button:hover,
+.actions a:focus,
+.actions a:hover,
+.priceCards a:focus,
+.priceCards a:hover {
+  transform: scale(1.2);
+}
+.actions .featured a,
+.priceCards a.featured {
+  background: var(--color-featured);
+  color: var(--color-chrome-bg);
+}
+.actions li {
+  list-style: none;
+  display: inline;
+  margin-right: 1em;
+}

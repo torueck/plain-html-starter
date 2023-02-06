@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!-- HTML, HEAD, charset META MUST appear in this order -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- viewport META preps for mobile friendly - telling mobile browsers NOT to lie to us about their size -->
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
+    <!-- description META should be a natural language sentence or two describing the current page. 
+      It is NOT someplace to blindly stuff with keywords. -->
+    <meta
+      name="description"
+      content="A sample vanilla HTML template from 'step two' of building a web page using progressive enhancement. Layout will be created during step 3."
+    />
+    <!-- keywords META should be seven or eight single words or proper names (not all possible word combinations) 
+      that EXIST inside your document BODY as normal text. Preferably under 127 chars. -->
+    <meta
+      name="keywords"
+      content="introduction,prices,free,enterprise,features,projects,resources"
+    />
+    <!-- Add a webfont 
+    the preconnect helps load faster if it’s not already in our cache, and it starts the parallel loading 
+    alongside the CSS instead of after it. Also restrict the media targets.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      media="screen,print"
+    />
+    <!-- Include our external style. Set media attribute to screen (i.e. not print, aural braille)! -->
+    <link rel="stylesheet" href="template.screen.css" media="screen" />
+    <!-- Don't blindly stuff TITLE with keywords; no vertical breaks, pipes. -->
+    <title>SITE TITLE</title>
+  </head>
+
+  <body>
+    <!-- Add a div around the content so that we can eliminate the “double scrollbar” issue that can arise 
+      with position:fixed modals. If the content is too short for the screen and we need a scrollbar, 
+      a fixed child of BODY cannot position over the BODY scrollbar. Thus we need an extra DIV (boo, hiss) 
+      to get around this issue. Pain in the arse! -->
+    <div id="fauxBody">
+      <!-- Add #top to the header so that if we want we can scroll up to the top with a simple href=”#top” -->
+      <header id="top">
+        <!-- There should only ever be a single H1 on a page -->
+        <h1><a href="/">SITE TITLE</a></h1>
+        <!-- A button so we can create a modal mobile friendly version. -->
+        <button type="button" id="mainMenuOpen" hidden></button>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#"></a>Tutorials</li>
+            <li><a href="#"></a>FAQ</li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#signin">Sing In</a></li>
+          </ul>
+        </nav>
+      </header>
+      <!-- MAIN to wrap all SECTIONS between HEADER and FOOTER where the real stuff is -->
+      <main>
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id
+            nisl ultricies, accumsan tortor non, molestie nisi. Mauris sed porta
+            augue. Ut ornare velit consectetur dui fermentum, non faucibus
+            mauris feugiat. Phasellus dictum, massa non laoreet sagittis, erat
+            augue pretium enim, vitae mattis quam risus eget nisl.
+          </p>
+          <ul>
+            <li><a href="#">Get Started</a></li>
+            <li><a href="#">Learn More</a></li>
+          </ul>
+        </section>
+        <!-- put a class on the SECTION to say what this is. 
+          Also put an ID on it, so that we can  hash link to them if we want. -->
+        <section id="prices" class="priceCards">
+          <h2>Prices</h2>
+          <p>
+            Orci varius natoque penatibus et magnis dis parturient montes,
+            nascetur ridiculus mus. Aliquam vehicula neque sed libero suscipit
+            ultricies. Pellentesque sit amet nisi et dui hendrerit laoreet at et
+            urna. Nunc ac ultricies dui.
+          </p>
+          <!-- a div as our flex container -->
+          <div class="cards">
+            <article>
+              <h3>Free</h3>
+              <ul>
+                <li><strong>$0/mo</strong></li>
+                <li>1 User Account</li>
+                <li>2gb storage</li>
+                <li>100mbps Throughput</li>
+                <li>E-mail Support Only</li>
+              </ul>
+              <a href="#">Sign Up</a>
+            </article>
+            <article>
+              <h3>Standard</h3>
+              <ul>
+                <li><strong>$15/mo</strong></li>
+                <li>10 User Accounts</li>
+                <li>100gb Storage</li>
+                <li>Up to 1gbps Throughput (based on availability)</li>
+                <li>Priority E-mail And Phone Support</li>
+              </ul>
+              <a href="#">Oder Now</a>
+            </article>
+            <article>
+              <h3>Enterprise</h3>
+              <ul>
+                <li><strong>$50/mo</strong></li>
+                <li>25 User Accounts</li>
+                <li>250gb Storage</li>
+                <li>Up to 10gbps throughput, 5gbps guaranteed</li>
+                <li>Priority E-mail And Phone Support</li>
+              </ul>
+              <a href="#">Sign Up</a>
+            </article>
+          </div>
+        </section>
+        <!-- put a class on the SECTION to say what this is. 
+          Also put an ID on it, so that we can  hash link to them if we want. -->
+        <section id="staff" class="staffCards">
+          <h2>Our Staff</h2>
+          <p>
+            Sed pellentesque sed nulla a malesuada. Sed vitae maximus sem.
+            Vivamus pharetra tincidunt lobortis. Praesent ut mauris leo. Nam
+            justo ex, porta ac massa sed, fringilla mattis quam. Morbi congue
+            arcu eget faucibus aliquam.
+          </p>
+          <div class="cards">
+            <!-- a div as our flex container -->
+            <article>
+              <img src="../images/avatar1.png" alt="Duddy Dee's avatar" />
+              <h3>
+                Duddy Dave<br />
+                <small>Founder</small>
+              </h3>
+              <p>
+                Suspendisse sit amet condimentum nisl. Ut vel turpis nec ipsum
+                aliquam consequat egestas ullamcorper felis
+              </p>
+            </article>
+            <article>
+              <img src="../images/avatar2.png" alt="Jessica Dee's avatar" />
+              <h3>
+                Jessica Dave<br />
+                <small>Agent</small>
+              </h3>
+              <p>
+                Donec dignissim, augue non blandit pretium, sapien lacus
+                sollicitudin enim, eget gravida ligula dolor a elit.
+              </p>
+            </article>
+            <article>
+              <img src="../images/avatar3.png" alt="Wong Fu's avatar" />
+              <h3>
+                Wong Fu<br />
+                <small>Promoter</small>
+              </h3>
+              <p>Thanks for Everything, Julie Newmar</p>
+            </article>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <section>
+          <hr />
+          &copy; Your Company
+        </section>
+        <section>
+          <h2>Features</h2>
+          <ul>
+            <li><a href="#">Some Stuff</a></li>
+            <li><a href="#">Random Junk</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Something Else</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Resources</h2>
+          <ul>
+            <li><a href="#">Dev. Tools</a></li>
+            <li><a href="#">Tutorials</a></li>
+            <li><a href="#">Libraries</a></li>
+            <li><a href="#">References</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>About</h2>
+          <ul>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Locations</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </section>
+      </footer>
+    </div>
+    <!-- An ID so that we can target the form. A class to say this is a modal. -->
+    <form id="contact" method="post" class="modal">
+      <!-- An ANCHOR to provide the closing behavior -->
+      <a href="#" class="modalClose" hidden></a>
+      <!-- A DIV that serves as an inner style container -->
+      <div>
+        <h2>Contact Us</h2>
+        <a href="#" class="modalClose" hidden></a>
+        <!-- Use FIELDSET to wrap all form elements the user can interact with - this helps accessibility -->
+        <fieldset>
+          <label>
+            Your Name<br />
+            <input type="text" name="name" required /><br />
+          </label>
+          <label>
+            E-Mail Address<br />
+            <input type="email" name="email" required /><br />
+          </label>
+          <label>
+            Phone Number<br />
+            <input type="text" name="phone" /><br />
+          </label>
+          <label>
+            Subject<br />
+            <input type="text" name="subject" required /><br />
+          </label>
+          <label>
+            Message<br />
+            <textarea name="message" required></textarea><br />
+          </label>
+        </fieldset>
+        <footer>
+          <button>Submit</button>
+        </footer>
+      </div>
+    </form>
+    <!-- An ID so that we can target the form. A class to say this is a modal. -->
+    <form id="signin" method="post" class="modal">
+      <!-- An ANCHOR to provide the closing behavior -->
+      <a href="#" class="modalClose" hidden></a>
+      <!-- A DIV that serves as an inner style container -->
+      <div>
+        <h2>Sign In</h2>
+        <a href="#" class="modalClose" hidden></a>
+        <!-- Use FIELDSET to wrap all form elements the user can interact with - this helps accessibility -->
+        <fieldset>
+          <label>
+            Username<br />
+            <input type="text" name="username" required /><br />
+          </label>
+          <label>
+            Password<br />
+            <input type="password" name="password" required /><br />
+          </label>
+          <label>
+            <input type="checkbox" name="remember" value="1" />
+            Remember Me<br />
+          </label>
+        </fieldset>
+        <footer>
+          <button>Submit</button>
+        </footer>
+      </div>
+    </form>
+  </body>
+</html>
