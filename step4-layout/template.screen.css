@@ -245,6 +245,8 @@ form.modal > div {
   display: block;
   text-indent: 0.5em;
 }
+/* For consistency of style, a number of our content area “action” anchors 
+will share style with our form buttons, so let’s declare all that together. */
 .modal footer button,
 .actions a,
 .priceCards a {
@@ -275,4 +277,18 @@ form.modal > div {
   list-style: none;
   display: inline;
   margin-right: 1em;
+}
+/* header and footer */
+#fauxBody > header,
+#fauxBody > footer {
+  padding: 0.5rem 1rem;
+  flex-grow: 0;
+  background: var(--color-chrome-bg);
+}
+#fauxBody > header {
+  display: flex;
+  border-bottom: var(--border-hairline);
+}
+#fauxBody > footer {
+  border-top: var(--border-hairline);
 }
