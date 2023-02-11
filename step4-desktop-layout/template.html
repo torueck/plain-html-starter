@@ -53,8 +53,8 @@
         <nav>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="#"></a>Tutorials</li>
-            <li><a href="#"></a>FAQ</li>
+            <li><a href="#">Tutorials</a></li>
+            <li><a href="#">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#signin">Sing In</a></li>
           </ul>
@@ -62,20 +62,28 @@
       </header>
       <!-- MAIN to wrap all SECTIONS between HEADER and FOOTER where the real stuff is -->
       <main>
-        <section>
-          <h2>Introduction</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id
-            nisl ultricies, accumsan tortor non, molestie nisi. Mauris sed porta
-            augue. Ut ornare velit consectetur dui fermentum, non faucibus
-            mauris feugiat. Phasellus dictum, massa non laoreet sagittis, erat
-            augue pretium enim, vitae mattis quam risus eget nisl.
-          </p>
-          <ul class="actions">
-            <li class="featured"><a href="#">Get Started</a></li>
-            <li><a href="#">Learn More</a></li>
-          </ul>
-        </section>
+        <div
+          class="hero"
+          style="
+            --heroBg: url(https://source.unsplash.com/KMn4VEeEPR8/1920x1280);
+          "
+        >
+          <section>
+            <h2>Introduction</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+              id nisl ultricies, accumsan tortor non, molestie nisi. Mauris sed
+              porta augue. Ut ornare velit consectetur dui fermentum, non
+              faucibus mauris feugiat. Phasellus dictum, massa non laoreet
+              sagittis, erat augue pretium enim, vitae mattis quam risus eget
+              nisl.
+            </p>
+            <ul class="actions">
+              <li class="featured"><a href="#">Get Started</a></li>
+              <li><a href="#">Learn More</a></li>
+            </ul>
+          </section>
+        </div>
         <!-- put a class on the SECTION to say what this is. 
           Also put an ID on it, so that we can  hash link to them if we want. -->
         <section id="prices" class="priceCards">
@@ -91,7 +99,9 @@
             <article>
               <h3>Free</h3>
               <ul>
-                <li><strong>$0/mo</strong></li>
+                <li>
+                  <strong>$0<span>/mo</span></strong>
+                </li>
                 <li>1 User Account</li>
                 <li>2gb storage</li>
                 <li>100mbps Throughput</li>
@@ -102,7 +112,9 @@
             <article>
               <h3>Standard</h3>
               <ul>
-                <li><strong>$15/mo</strong></li>
+                <li>
+                  <strong>$15<span>/mo</span></strong>
+                </li>
                 <li>10 User Accounts</li>
                 <li>100gb Storage</li>
                 <li>Up to 1gbps Throughput (based on availability)</li>
@@ -113,7 +125,9 @@
             <article>
               <h3>Enterprise</h3>
               <ul>
-                <li><strong>$50/mo</strong></li>
+                <li>
+                  <strong>$50<span>/mo</span></strong>
+                </li>
                 <li>25 User Accounts</li>
                 <li>250gb Storage</li>
                 <li>Up to 10gbps throughput, 5gbps guaranteed</li>
